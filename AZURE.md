@@ -1,30 +1,32 @@
-AZURE TRAININGS:
+# Cracking the Azure. AZURE TRAININGS & CERTIFICATION. Preparation and Overview guide
+
+## Table of content and description
 
 Book AZ-900T01-A - Microsoft Azure Fundamentals at skillpipe
-	
-Certifications:
-	AZ-103
-	AZ-203
-	AZ-500
-	DevOps Engineer Expert -> required AZ-103 or AZ-203 and AZ-400
-	Azure solutions architect expert -> require AZ-300 and AZ-301
-	
-AZ-900 overview:
-	Understand cloud concepts
-	Understand core azure services
-	Understand azure prices
-	Understand security, privacy, compliance and trust
-	
--
-~Fundamentals
-~Solution Architect 
-~Administrator - devops engineers, deploy and operate ~20-30 hours
-~DevOps - tricky, you should know also devops azure service - pipeline, etc.. ~60hours
+Started as of April of 2020th
+
+### Certifications
+
+- AZ-900 - Fundamentals. AZ-900T00 is two days course with labs, AZ-900T01 is one day without labs.
+- AZ-103 - Administrator - devops engineers, deploy and operate. Require about ~20-30 hours.
+- AZ-203
+- AZ-500
+- AZ-400 - DevOps Engineer Expert -> required AZ-103 or AZ-203 and AZ-400. Tricky, you should know also devops azure service - pipeline, etc. Require about ~60hours.
+- AZ-301 - Azure solutions architect expert -> require AZ-300 and AZ-301
+
+### AZ-900 overview
+
+- Understand cloud concepts
+- Understand core azure services
+- Understand azure prices
+- Understand security, privacy, compliance and trust
+- ...
+
+### Plan
 
 AZ-900 -> AZ-103 -> AZ-400
 
 
-	
 ---
 CapEx - Capital Expenditure (Expenses) - upfront costs. and predictable fixed costs. value decrease over time. resources can be a loss. In other words, spend on physical infrastructure up front. From accounting side of view like investments in the company (whole company cost grows)
 OpEx - Operational Expenditure - ongoing billing costs, pay as you use it. test before commiting. fantastic for agile and small business. resource can be deleted. In other words, spend on services as needed and get billed immediatly. From accounting side of view like operational expenses and non-investments (company just spend the money).
@@ -49,18 +51,27 @@ Private = as your house, you responsible for everything, even grass outside. Own
 Public = as rented appartment, you responsible only for furniture inside, but does not care about everything outside. Owned by cloud services, which provides resources to multiple organizations and users. Typical access via secure, but internet connection. No CapEx, only OpEx.
 Hybric = as condo, you have flat inside building, you are owner of the flat, but other things inside or outside building is not your responsibility. Combines public and private to allow application use resources in most appropriate way.
 
-Core Azure Services:
-Five geographies: Americas, Europe, Asia Pacific, Middle East, Africa
-Each geography has Region pair of region data center: Data resides in the same geography, for example Canada East and Canada Center.
-Special reigions: US Government
-China 21 Vianet (East and North)
-Germany T-Systems data trustee (Central and NorthEast)
+## Core Azure Services
 
-Availability zones: phisically separates location within an Azure region
+### Regions
+
+Region contains at least one datacenter. Different regions has different price per virtual machine, traffic, etc.
+
+Five geographies: Americas, Europe, Asia Pacific, Middle East, Africa
+
+Each geography has **Region** pair of region data center: Data resides in the same geography, for example Canada East and Canada Center.
+
+Datacenters in Azure can be Public or Special.
+Special reigions:
+
+- US Government (North America, DoD - Department of Defense)
+- China 21 Vianet (East and North)
+- Germany T-Systems data trustee (Central and NorthEast)
+
+Availability zones (Region pairs): phisically separates location within an Azure region
 Each zone has independent cooling, power and networking
 Three zones per region.
 It helps with protection against datacenter failures, it is also an optional service
-
 
 Availability Sets: Ensure that a virtual machine is online during maintenance or failure
 A virtual machine is assigned to an Update Domain and Fault Domain. Only one Update Domain would be updated at a time. Fault Domain provide physical isolation of data center
@@ -335,10 +346,6 @@ AZ-103 (LinkedIn Learning):
 --azure trainings and certification resources
 
 	
-		
-
-
-
 
 
 -----
