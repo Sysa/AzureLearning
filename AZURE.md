@@ -14,6 +14,8 @@ Started as of April of 2020th
 - AZ-400 - DevOps Engineer Expert -> required AZ-103 or AZ-203 and AZ-400. Tricky, you should know also devops azure service - pipeline, etc. Require about ~60hours.
 - AZ-301 - Azure solutions architect expert -> require AZ-300 and AZ-301
 
+[IMG]
+
 ### AZ-900 overview
 
 - Understand cloud concepts
@@ -26,14 +28,13 @@ Started as of April of 2020th
 
 AZ-900 -> AZ-103 -> AZ-400
 
-
 ---
 CapEx - Capital Expenditure (Expenses) - upfront costs. and predictable fixed costs. value decrease over time. resources can be a loss. In other words, spend on physical infrastructure up front. From accounting side of view like investments in the company (whole company cost grows)
-OpEx - Operational Expenditure - ongoing billing costs, pay as you use it. test before commiting. fantastic for agile and small business. resource can be deleted. In other words, spend on services as needed and get billed immediatly. From accounting side of view like operational expenses and non-investments (company just spend the money).
+OpEx - Operational Expenditure - ongoing billing costs, pay as you use it. test before committing. fantastic for agile and small business. resource can be deleted. In other words, spend on services as needed and get billed immediately. From accounting side of view like operational expenses and non-investments (company just spend the money).
 Consumption based model - only pay for what is used, no upfront costs. You consume - you pay.
 	- Enterprise agreement...
 	
-Azure and Azure Stack is not the same. They looks similar, but it is not. Azure stack is not good idea without Azure. Example: You have ship without internet, but you need to collect metrics while crouise. You buy Azure Stack on that ship, and when it in Port, you connect that Azure Stack to Azure and collect all the data in the cloud. Azure stack without Azure itself will be waste of money and resources.
+Azure and Azure Stack is not the same. They looks similar, but it is not. Azure stack is not good idea without Azure. Example: You have ship without internet, but you need to collect metrics while cruise. You buy Azure Stack on that ship, and when it in Port, you connect that Azure Stack to Azure and collect all the data in the cloud. Azure stack without Azure itself will be waste of money and resources.
 
 IaaS - infrastructure as a service - uses computer services, that hosted on cloud provider. Service provider is responsible for everything, except: OS, configs and backups - that's is customer responsibility. (Your responsibility are: OS, middleware, runtime environment, data, applications). Most flexible.
 PaaS - platform as a service - we are responsible only for our application and data. Provider will take care about infrastructure, os, management and backups, etc. Better productivity, as you focus only on your app.
@@ -42,20 +43,19 @@ BaaS - backup as a service
 DaaS - database as a service
 IDaaS - Identity as a service
 
-On-premises envs - we are responsible for everything: hardware, infrastructure, building, temperature, security, personal, etc. (networking, storage, servers, virtualization, OS, middleware, runtime environment, data, applications)
+On-premises environments - we are responsible for everything: hardware, infrastructure, building, temperature, security, personal, etc. (networking, storage, servers, virtualization, OS, middleware, runtime environment, data, applications)
 
-
-Public, Private, Hybric clouds:
+Public, Private, Hybrid clouds:
 
 Private = as your house, you responsible for everything, even grass outside. Owned and operated only by organization that uses resources. Full control as advantage, but you need workers.
-Public = as rented appartment, you responsible only for furniture inside, but does not care about everything outside. Owned by cloud services, which provides resources to multiple organizations and users. Typical access via secure, but internet connection. No CapEx, only OpEx.
-Hybric = as condo, you have flat inside building, you are owner of the flat, but other things inside or outside building is not your responsibility. Combines public and private to allow application use resources in most appropriate way.
+Public = as rented apartment, you responsible only for furniture inside, but does not care about everything outside. Owned by cloud services, which provides resources to multiple organizations and users. Typical access via secure, but internet connection. No CapEx, only OpEx.
+Hybrid = as condo, you have flat inside building, you are owner of the flat, but other things inside or outside building is not your responsibility. Combines public and private to allow application use resources in most appropriate way.
 
 ## Core Azure Services
 
 ### Regions
 
-Region contains at least one datacenter. Different regions has different price per virtual machine, traffic, etc.
+Region contains *at least* one datacenter. Different regions has different price per virtual machine, traffic, etc.
 
 Five geographies: Americas, Europe, Asia Pacific, Middle East, Africa
 
@@ -68,35 +68,56 @@ Special reigions:
 - China 21 Vianet (East and North)
 - Germany T-Systems data trustee (Central and NorthEast)
 
-Availability zones (Region pairs): phisically separates location within an Azure region
-Each zone has independent cooling, power and networking
+**Availability zones** (Region pairs): facilities, which physically separates location within an Azure region
+Each zone has independent cooling, power and networking.
 Three zones per region.
-It helps with protection against datacenter failures, it is also an optional service
+[IMG]
+It helps with protection against datacenter failures, service interruptions, disasters or network/power outages. It is also an optional service.
 
-Availability Sets: Ensure that a virtual machine is online during maintenance or failure
-A virtual machine is assigned to an Update Domain and Fault Domain. Only one Update Domain would be updated at a time. Fault Domain provide physical isolation of data center
+**Availability Sets** is a metadata of your resources (like VM) and which helps Azure to allocate your resources in way that ensures that a virtual machine is online during maintenance or failure.
+A virtual machine is assigned to an **Update Domain** and **Fault Domain**. Only one Update Domain would be updated at a time. Fault Domain provide physical isolation of data center.
 
-Resource group - another core component of Azure
+**Update Domain (UD)** - scheduled maintenance or update, sequenced through update domain. (up to 20 (?))
+
+**Fault Domain (FD)** - provide physical isolation of workloads across different hardware in data center. (up to 3 (?))
+
+How to understand which region is better to you (from your host):
+
+- https://www.azurespeed.com/Azure/Latency
+- https://azurespeedtest.azurewebsites.net/
+
+[Round trip between Azure regions](https://docs.microsoft.com/en-us/azure/networking/azure-network-latency)
+
+Price for one type of resource in different location will differ, hence choose Region based on latency and price, use [Price calculator](https://azure.microsoft.com/en-us/pricing/calculator/) for Region comparison.
+
+**Azure Resource Manager** provides you a management layer in which resource groups and all the resources within it are created, configured, managed and deleted.
+
+Hierarchy has the following levels (on each level you can manage permissions, which will be inherited and accumulated from top to bottom layers):
+
+- Azure account
+  - Management groups
+    - Subscriptions (one or more)
+      - Resource groups (one or more)
+        - Resources (one or more)
+
+**Resource group** - another core component as unit of management for resources in Azure.
+Aggregates resources into single unit.
 Allow to deploy, manage and monitor resources in a group
-Resources in the same resource group should be the same lifespan
-When you provision resource, it can only exist in a single resource group
+Resources in the same resource group should be the same lifespan, like one application.
+Resource can only exist in a single resource group.
 Not all, but most of the resources can be moved across/between resource groups
-Rsource can be assigned to different regions within a resource group
+Resource can be assigned to different regions within a resource group
 Deleting of resource group will also delete all associated resources
-
-Azure account
-	Azure subscription
-		Azure Resources in Resource Groups
-		
-		
-You can manage with Azure Resouce Manager, using: Azure portal, Azure PowerShell, Azure Command Line Interface (CLI) or REST Clients
-With that Azure Resource Manager we can manage our resources, such as: virtaul machines, web apps, storages, databases, etc.
+It helps also to group resources or/and give access only to certain resource group.
 
 
-Azure Marketplace - it is not a core component - there are customers can provide custom solutions
+	You can manage with Azure Resource Manager, using: Azure portal, Azure PowerShell, Azure Command Line Interface (CLI) or REST Clients
+	With that Azure Resource Manager we can manage our resources, such as: virtual machines, web apps, storages, databases, etc.
 
 
-Azure Compute - core product: VMs, VM Scale Sets, Azure App Service, Serverless Computing
+	Azure Marketplace - it is not a core component - there are customers can provide custom solutions
+
+**Azure Compute** - core product: VMs, VM Scale Sets, Azure App Service, Serverless Computing
 Azure Compute: common resources are Disk, Processor, Memory, OS, Networking
 Azure Compute provides an on-demand service for running cloud-based apps
 
@@ -432,12 +453,16 @@ Security -
 -----
 
 AZ-900 questions (cracking the Azure questions):
-	- Count benefits of using cloud
-		+ you can have stage (uat/pre-prod) as the same as prod easier.
-	- Which type of cloud will give you more flexibility
-	- Which cloud you should choose for legacy app with specific hardware
-	- Which cloud you should choose for new app with common hardware
-	
+
+- Count benefits of using cloud
+  - you can have stage (uat/pre-prod) as the same as prod easier.
+- Which type of cloud will give you more flexibility
+- Which cloud you should choose for legacy app with specific hardware
+- Which cloud you should choose for new app with common hardware
+- What is the best way to separate PROD, UAT (Stage), TEST and DEV Environments in Azure?
+  - You can separate it at least as different Resource Groups, or better to have different subscription for each environment. It is also depends of resources amount for your application.
+- How updates on Azure hardware will affect my VM on it?
+  - You will recieve notification about planned update with desired date. Due to this date (usually one month+) you should able to login into your portal and move your affected VMs or other resources in different hardware node at what time you prefer (can safely do it). Otherwise, if you will not do that, Microsoft will freeze you VM or other resource during update, without moving it to another node. In some exceptional cases you should contact technical support and discuss with them all the details.
 
 
 ------------
