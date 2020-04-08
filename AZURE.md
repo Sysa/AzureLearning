@@ -55,18 +55,20 @@ Hybrid = as condo, you have flat inside building, you are owner of the flat, but
 
 ### Regions
 
-Region contains *at least* one datacenter. Different regions has different price per virtual machine, traffic, etc.
+**Region** is a geographical area on the planet containing *at least* one, but potentially multiple datacenters that are in close proximity and networked together with a low-latency network. Different regions has different price per virtual machine, traffic, etc.
 
 Five geographies: Americas, Europe, Asia Pacific, Middle East, Africa
 
 Each geography has **Region** pair of region data center: Data resides in the same geography, for example Canada East and Canada Center.
 
 Datacenters in Azure can be Public or Special.
-Special reigions:
+Special regions:
 
 - US Government (North America, DoD - Department of Defense)
 - China 21 Vianet (East and North)
 - Germany T-Systems data trustee (Central and NorthEast)
+
+Some global Azure services that do not require you to select a region, such as Microsoft Azure Active Directory, Microsoft Azure Traffic Manager, or Azure DNS.
 
 **Availability zones** (Region pairs): facilities, which physically separates location within an Azure region
 Each zone has independent cooling, power and networking.
@@ -90,7 +92,8 @@ How to understand which region is better to you (from your host):
 
 Price for one type of resource in different location will differ, hence choose Region based on latency and price, use [Price calculator](https://azure.microsoft.com/en-us/pricing/calculator/) for Region comparison.
 
-**Azure Resource Manager** provides you a management layer in which resource groups and all the resources within it are created, configured, managed and deleted.
+**Azure Resource Manager (ARM)** provides you a management layer in which resource groups and all the resources within it are created, configured, managed and deleted.
+[ARM Template](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview) - is a JSON file that defines the infrastructure and configuration for your project. A way to have infrastructure as code. You can download prepared ARM template on the step of creation resource, VM for example.
 
 Hierarchy has the following levels (on each level you can manage permissions, which will be inherited and accumulated from top to bottom layers):
 
@@ -117,9 +120,27 @@ It helps also to group resources or/and give access only to certain resource gro
 
 	Azure Marketplace - it is not a core component - there are customers can provide custom solutions
 
-**Azure Compute** - core product: VMs, VM Scale Sets, Azure App Service, Serverless Computing
-Azure Compute: common resources are Disk, Processor, Memory, OS, Networking
-Azure Compute provides an on-demand service for running cloud-based apps
+**Azure Compute** - core product, which includes:
+
+- VMs - IaaS. self-explained.
+- VM Scale Sets (VMSS) - IaaS. for automatic scale of identical VMs. Internal load balancer will be created with round-robin algorithm and health-check probe at level 4, or you can select application gateway, which will be on 7th level of OSI Model as application where you can do more conditions of your redirects, balancing or whatever you need, based on headers and other input parameters.
+- Azure App Service - PaaS. offer to build, deploy and scale web, mobile or API apps.
+- Serverless Computing (Azure Functions) - PaaS. is an event driven, compute-on-demand experience that extends the existing Azure application platform with capabilities to implement code triggered by events occurring in Azure or third party service as well.
+- Container - PaaS. Allows to upload yor containers, which Azure will run for you.
+- Kubernetes service - PaaS. Container Orchestration service for huge amount of containers.
+- other services...
+
+Azure Compute provides an on-demand service for running cloud-based apps.
+Common resources are Disk, Processor, Memory, OS, Networking. Resources available in minutes or seconds. Pay per use.
+
+**Azure Network Services**
+
+- Azure Virtual Network - IaaS. Fundamental building block for your private network in Azure. VNet enables many types of Azure resources, such as Azure Virtual Machines (VM), to securely communicate with each other, the internet, and on-premises networks.
+- Azure Load Balancer - Help to scale identical VMs in automatic way. Works for either, public or internal networks.
+- VPN Gateway - PaaS. To connect private and public clouds, for example.
+- Application Gateway - Balancer on application level, can separate requests based on cookies, headers, URLs, etc, etc.
+- CDN (Content Delivery Network) - helps to cache your content for specific region, closer to clients.
+- other services...
 
 Azure VMs:
 	Infrastructure as a Service
@@ -135,7 +156,7 @@ Azure Functions - app service
 	Run small piece of code, instead of full app. Triggered by events. IoT or processing of data.
 	
 Azure Containers:
-	Do not include an OS that can be managed, but the OS files can be refferenced to run an application. Libraries can be added.
+	Do not include an OS that can be managed, but the OS files can be referenced to run an application. Libraries can be added.
 	
 Container consists of:
 	Azure Platform
@@ -169,35 +190,34 @@ CDN - Content Delivery Network.
 	Globally distributed servers used to efficiently deliver web content in the user's region
 	Content cached to minimize latency
 	
-Azure Storage:
-	Stores files, messages and tables.
-	Mssively scalable, Durable and High available, secure.
-	Supports Structured data, semisturctured data, unstructered data.
-	
-	Structured data:
-		Has a schema, rigid format, relational data, uses keys to relate row in one table to a row in another table. Typical use - Database
-		
-	Semistructured data:
-		Ad-hoc schema
-		Nonrelational format
-		Known as NoSQL data
-		Uses tags for data location
-		Typical usage: tab-delimited, files, .csv, XML, JSON
-		
-	Unstructed data:
-		No schema or data structure: PDF, Doc, JPG, AVI, etc.
-		
-Storage Type in AZURE:
-	Blob, Disk, File, Archive
-	
-	Blob - used for unstructured data, highly scalable, recommended for most scenarios. Common use case: streaming audio, video, store backups, images, docs.
-	Disk - persistent storage for VM. Storage for OS and Storage for Data (two disks in sum). You must attach your data disk to your Virtaul machine and to not store data at temporary disks.
-	File storage - file share in the cloud. accessed using SMB. Shares can be mounted to a system providing direct access to the files of the cloud. Even from your lapton. Support multiple connections.
-	Archive - for long-term backups or data, which is required unfrequently. stored offline. low storage costs. required more time to access.
-	
+**Azure Storage Services**
+
+Stores files, messages and tables. Massively scalable, Durable and High available, secure. Supports Structured data, semi-structured data, unstructured data.
+
+- Structured data:
+  - Has a schema, rigid format, relational data, uses keys to relate row in one table to a row in another table. Typical use - Database
+- Semi-structured data:
+  - Ad-hoc schema
+  - Nonrelational format
+  - Known as NoSQL data
+  - Uses tags for data location
+  - Typical usage: tab-delimited, files, .csv, XML, JSON
+- Unstructured data:
+  - No schema or data structure: PDF, Doc, JPG, AVI, etc.
+
+Storage Types in Azure:	Blob, Disk, File, Archive.
+
+- Blob - used for unstructured data, highly scalable, recommended for most scenarios. Common use case: streaming audio, video, store backups, images, docs. No restrictions on the kind of data it can hold.
+- Disk - persistent storage for VM. Storage for OS and Storage for Data (two disks in sum). You must attach your data disk to your Virtual machine and to not store data at temporary disks. In short: provides disks for VMs, Apps and other services which required disks. Can be connected only to one resource.
+- File storage - file share in the cloud. accessed using SMB. Shares can be mounted to a system providing direct access to the files of the cloud. Even from your laptop. Support multiple connections.
+- Archive - for long-term backups or data, which is required infrequently. stored offline. low storage costs. required more time to access.
+- Azure Queue Storage --- /????
+
+**Azure Storage Account** contains all of your Azure Storage data objects: blobs, files, queues, tables, and disks. The storage account provides a unique namespace for your Azure Storage data that is accessible from anywhere in the world over HTTP or HTTPS. Data in your Azure storage account is durable and highly available, secure, and massively scalable.
+
 Azure Databases:
 	Platform as a Service.
-	Fully managed databases, High Availabile.
+	Fully managed databases, High Available.
 	Databases: Cosmos DB, SQL Database, SQL Warehouse, Azure Database Migration Service (DMS)
 	
 	CosmosDB:
@@ -408,13 +428,10 @@ Azure Service Bus
 
 Azure Queue Storage --- /????
 
-Azure Cloud Services --- /???? https://stackoverflow.com/questions/50033033/what-is-azure-cloud-service
-								https://github.com/MicrosoftDocs/azure-docs/issues/11861
-								
-								
-								
+**Azure Cloud Services** - community suggests not to use this service, because it has outdated API, doesn't have appropriate updates and have other legacy-stale solution issues. Just avoid to use it in the future. See more details at [stackoverflow](https://stackoverflow.com/questions/50033033/what-is-azure-cloud-service) and [github](https://github.com/MicrosoftDocs/azure-docs/issues/11861)
 
-### Terms and difference between them
+
+### General Terms and difference between them
 
 *High Availability* - is software used to ensure that systems are running and available most of the time. High availability is a high percentage of time that the system is functioning. It can be formally defined as (1 – (down time/ total time))*100%. Although the minimum required availability varies by task, systems typically attempt to achieve 99.999% (5-nines) availability. This characteristic is weaker than fault tolerance, which typically seeks to provide 100% availability, albeit with significant price and performance penalties.
 
@@ -448,6 +465,7 @@ Customer Latency Capability -
 Predictive cost considerations - 
 Security - 
 
+Container - virtualized environment, but not VM. Container don't include OS, should be lightweight and designed to be created, scaled out and removed dynamically and in short period of time.
 
 
 -----
