@@ -118,7 +118,7 @@ It helps also to group resources or/and give access only to certain resource gro
 	With that Azure Resource Manager we can manage our resources, such as: virtual machines, web apps, storages, databases, etc.
 
 
-	Azure Marketplace - it is not a core component - there are customers can provide custom solutions
+**Azure Marketplace** - it is not a core component - there are customers can provide custom solutions and get royalty for using of their product in marketplace. ISV - Independent Software Vendor.
 
 **Azure Compute** - core product, which includes:
 
@@ -215,77 +215,90 @@ Storage Types in Azure:	Blob, Disk, File, Archive.
 
 **Azure Storage Account** contains all of your Azure Storage data objects: blobs, files, queues, tables, and disks. The storage account provides a unique namespace for your Azure Storage data that is accessible from anywhere in the world over HTTP or HTTPS. Data in your Azure storage account is durable and highly available, secure, and massively scalable.
 
-Azure Databases:
-	Platform as a Service.
-	Fully managed databases, High Available.
-	Databases: Cosmos DB, SQL Database, SQL Warehouse, Azure Database Migration Service (DMS)
-	
-	CosmosDB:
-		Globally distibuted, multimodel database service.
-		Scale agross azure regions
-		Highly responsive (less than 10 ms) and HA (99.999%)
-		Automatically replicate data closes to the user.
-		Typical usage in web, mobile, gaming or IoT apps.
-		
-	Azure SQL Database:
-		Relational Database Service (DaaS)
-		Fully managed SQL database and HA with automatic backups. Typical usage as corporate database.
-		
-	Azure SQL Warehouse:
-		Runs complex queries on petabytes of data
-		Uses massively parallel processing (MPP)
-		Used for big data
-		
-	Database Migration Service (DMS):
-		Migrate database to Azure with little downtime
-		Uses the Data Migration Assistant to provide reports and guides to step you into migration
-		
-		
-Popular AZURE Solutions:
-	- IoT Hub: Central message hub for bidirectional communication between IoT Devices and the application.
-	- IoT Central: Globally managed SaaS solution to monitor and manage IoT devices
-	- Big Data and Analytics: SQL Warehouse
-		* HDInsight - Service for open-source analytics such as Apache Spark or Apache Hadoop
-		* Data Lake Analytics: on-demand analytics job service, no hardware required.
-	- Artificial Intelligence (AI)
-		* Azure Machine Learning Service - Build, train, deploy, manage and track models. ML Studio Service - Visual interactive workspace to build and deploy ML Solutions. No code required, drag and drop. Models, created in ML Studio, can not be deployed or managed via ML Service.
-	- Serverless computing: Runs code only on the host. Respond to an Event, such as trigger from IoT Device. Typically used for processing incoming data.
-		* Logic Apps: Automate tasks, processes and more for integration with other services, apps, data, system and devices. No code required. Integrate on cloud or with on-prem solutions.
-		* Event grid: Event routing service. Take and event source (IoT Hub or Storage for example) and sends the event handler for processing.
-	...
-	
-Azure Management tools:
-	Azure Portal
-	PowerShell
-	CLI
-	Azure Cloud Shell - is Browser-based scripting env: bash or powershell. launched from the portal and required storage account.
-	Advisor - recommendations
-	
-Azure Security
-	Identity and Tools
-	Azure Identity service:
-		- Authentication (who you. like vehicle license/driver permit)
-		- Authorization (what, when and where you can drive, what type of vehicle)
-	Azure Active Directory: Cloud-based identity and access management solution. Provides Authentication, SSO (Single sign-on), App management, B2B and B2C identity services, Device management.
-	Azure Multi-factor Authentication: two or more methods. Something you know (password), you have (phone), you are (fingerprint).
-	Azure Security Center: - Security management system for both, cloud and on-premises workloads. Evaluates the security of current resources. Provide recommendations and threat detection alerts.
-	Azure Key Vault: Central Repository to store applications secrets. Supports tokens, passwords, certs, and etc. Create and Control encryption keys. Provision, manage and deploy public and private SSL/TSL Certs. Storing secretcs backed by hardware security modules (HSMs).
-	Azure Information Protection (AIP): Organize and classify documents and e-mails (confidentialm for internal use only, etc.). Automatic when using rules. Manual for users.
-	Azure Advanced Threat Protection (ATP): Identify compromised identities, advanced threats, insider actions, malicious attacks, etc.
-	
-Network Security:
-	Azure DDoS Protection: - Distributed denial access of service. Basic protection included by default
-	Azure Firewall: - Control access to Azure resources
-	NSG: Network Security Groups: Allow or Deny network traffic to and from resources in an Azure VNet subnet. Rules are processed in priority order. Lower processed first.
-	ASG: Application Security Group: Group virtual machines across virtual networkds. It allows to filter traffic to the virtual machines in the security group, not the network. Allows to segment virtual machines, based on applications.
-	
-Azure Governance Methodologies, Monitoring and Reporting.
-	Azure Policies: Policies enforce rules over azure resources, ensures the resource is compliant.
-	Initiatives: group of policies, that manages as single unit. It reduces the complexity of multiple policies.
-	Role-Based Access Control (RBAC): Default are: Owner, Contributor, Reader. You can create your own custom roles.
-	Azure Locks: prevents deletion or modification of a resource. CanNotDelete; ReadOnly.
-	Azure Advisor Security Assistance: provide a list of security recommendations.
-	Azure Blueprints: Applies the same scope to a set of Resources to be compliant. Blueprint contains: role assigment, policy, ARM templates (Azure Resource Manager) and Resource Groups.
+**Azure Database Services**
+PaaS. Fully managed databases, High Available. Databases:
+
+- Cosmos DB
+  - Globally distributed database service (NoSQL)
+  - Supports MongoDB, Cassandra and other APIs
+  - Scaled across azure regions
+  - Highly responsive (less than 10 ms) and HA (99.999%)
+  - Automatically replicate data closes to the user
+  - Typical usage in web, mobile, gaming or IoT apps
+- SQL Database
+  - Relational Database Service (DaaS, like PaaS)
+  - Fully managed SQL database and HA with automatic backups
+  - Based on latest stable version of MSSQL Server
+  - Typical usage as corporate database
+- Azure Database Migration Service (DMS)
+  - Migrate database to Azure with minimal downtime
+  - Uses the Data Migration Assistant to provide reports and guides to step you into migration
+
+#### Other Popular Azure Solutions
+
+- Internet of Things (IoT):
+  - IoT Hub: Central message hub for bidirectional communication between IoT Devices and the application.
+  - IoT Central - Globally managed SaaS solution to monitor and manage IoT devices, good for prototyping.
+- Big Data and Analytics:
+  - HDInsight - Service for open-source analytics (under the hood) such as Apache Spark or Apache Hadoop, cost-effective to process massive amounts of data.
+  - Data Lake Analytics - On-demand analytics job service, no hardware required.
+  - SQL Warehouse - Uses massively parallel processing (MPP) and runs complex queries on petabytes of data.
+- Artificial Intelligence (AI):
+  - Azure Machine Learning Service - Build, train, deploy, manage and track models. Models, created in ML Studio, can not be deployed or managed via ML Service.
+  - Azure Machine Learning Studio - Collaborative drag-and-drop visual workspaces where you can build, test and deploy machine learning solutions without needing to write code.
+- Serverless computing - Runs code only on the host. Respond to an Event, such as trigger from IoT Device. Typically used for processing incoming data.
+  - Logic Apps - Automate tasks, like workflow automation, processes and more for integration with other services, apps, data, system and devices. No code required. Integrate on cloud or with on-prem solutions. Example: photo uploaded to storage -> check for content on photo -> send alert in case of match condition.
+  - Event grid - Event routing service. Take and event source (IoT Hub or Storage for example) and sends the event handler for processing.
+- Azure DevOps:
+  - DevOps Services - Provides development collaboration tools, pipelines, git repositories, task boards and cloud-based load testing.
+  - DevTest Labs - Allows you to quickly create Azure environment (from prepared VM templates for example) with minimal waste and controlling cost. For students, as example.
+- ...
+
+### Azure Management tools
+
+- Azure Portal - Web-based portal, accessed via web-browser and allow you to manage your Azure resources.
+- PowerShell - Command shell scripting language.
+- CLI - Command-line scripting application, support cross-platform (win, linux, mac)
+- Azure Cloud Shell - is Browser-based scripting env: bash or powershell. launched from the portal and required storage account.
+- Advisor - recommendations about your Azure applications, costs, performance, also security and other tips and tricks. Advise report can be exported.
+
+## Azure Security / Privacy / Compliance / Trust
+
+In cloud you and your provided have shared responsibility for security, different levels depends on type of service (IaaS, PaaS, etc)
+
+### Identity and Tools
+
+- Azure Identity service:
+  - Authentication (who you. like vehicle license/driver permit)
+  - Authorization (what, when and where you can drive, what type of vehicle)
+- Azure Active Directory: This is not classical AD. It is Cloud-based identity and access management service. Provides Authentication, SSO (Single sign-on), App management, B2B (pay per user(?)) and B2C (pay per authentication(?)) identity services, Device management.
+- Azure Multi-factor Authentication: two or more elements for full authentication. Something you know (password), you have (phone), you are (fingerprint).
+- Azure Security Center: Security monitoring service and management system for both, cloud and on-premises workloads. Evaluates the security of current resources. Provide recommendations and threat detection alerts. Automatically applies your security policies to any new resource or service you provision.
+- Azure Key Vault: Central Repository to store applications secrets. Supports tokens, passwords, certs, and etc. Create and Control encryption keys. Provision, manage and deploy public and private SSL/TSL Certs. Storing secrets backed by hardware security modules (HSMs).
+- Azure Information Protection (**AIP**): Organize and classify documents and e-mails by applying labels (confidential for internal use only, etc.). Automatic when using rules with conditions. Also can be applied manually for users.
+- Azure Advanced Threat Protection (**ATP**): Identify compromised identities, advanced threats, insider actions, malicious attacks, etc.
+  - ATP Portal helps monitor and respond to suspicious activity
+  - ATP Sensors installed directly in your domain controller
+  - ATP Cloud service runs on Azure infrastructure
+
+### Network Security
+
+- Azure DDoS Protection: - Distributed denial access of service. Basic protection included by default and helps to sanitize unwanted network traffic. This service deploys only in Azure network.
+- Azure Firewall: - Control access to Azure resources. Firewall as a Service (FaaS). Applies in/outbound traffic filtering rules, unrestricted cloud stability. Uses Azure Monitor for logging.
+- NSG: Network Security Groups: Allow or Deny network traffic to and from resources in an Azure VNet subnet. Rules are processed in priority order. Lower processed first. NSG set inbound and outbound rules to filter by source and destination IP, port and protocol.
+- ASG: Application Security Group: Group virtual machines across virtual networks. It allows to filter traffic to the virtual machines in the security group, not the network. Allows to segment virtual machines, based on applications, like web server. Allows you to reuse your security policy at scale without manual maintenance of explicit IP addresses. Handles complexity of explicit IP addresses and multiple rule sets.
+- WAF: Web Application Firewall. Can be used as internal or external firewall for web apps.
+
+As example, to choose Azure Network Security solution, you need for **perimeter layer** (outside of your network): Azure DDoS Protection and Azure Firewall. And on **networking layer** you should use NSG and ASG to permit traffic only between networked resources. You also can combine it: like Azure Firewall + NSG + WAF.
+
+### Azure Governance Methodologies, Monitoring and Reporting
+
+- Azure Policies: Policies enforce rules over azure resources, ensures the resource is compliant. Stay compliant with your corporate standards and rules. Azure policies can be described in JSON format. Most of policies can be as allow action (and mark as compliant), deny action or just audit (log in journal). Already created resources (before policy creation) will be marked as non-compliant resources.
+- Initiatives: group of policies, that manages as single unit. It reduces the complexity of multiple policies. Helps to track compliance at greater scope.
+- Role-Based Access Control (RBAC): Role based access management control without additional cost, available for all Azure subscribers. Default roles are: Owner, Contributor, Reader. You can create your own custom roles. Like VM Manager or Network Operator with appropriate access permissions only to VM or Network resources. Custom role should be described in JSON file and created over CLI.
+- Azure Locks: prevents deletion or modification of a resource. CanNotDelete; ReadOnly. Manage locks at subscription, resource group or at individual resource level.
+- Azure Advisor Security Assistance: provide a list of security recommendations, integrates with Azure Security Center, you can see recommendations at Azure Advisor Dashboard. It is just advices, not required actions.
+- Azure Blueprints: Creates reusable environment definitions that can recreate your resources and apply policies instantly. Blueprint contains: role assignment, policy, ARM templates (Azure Resource Manager) and Resource Groups. It also helps with association of blueprints with specific Azure DevOps build artifacts, pipelines, releases, deployments and etc.
 	
 Monitor and Reporting:
 	Azure Monitor: to monitor availability and performance of resources using metrics and logs. (app monitoring data, guest os metrics, azure resource metrics, etc)
@@ -481,6 +494,8 @@ AZ-900 questions (cracking the Azure questions):
   - You can separate it at least as different Resource Groups, or better to have different subscription for each environment. It is also depends of resources amount for your application.
 - How updates on Azure hardware will affect my VM on it?
   - You will recieve notification about planned update with desired date. Due to this date (usually one month+) you should able to login into your portal and move your affected VMs or other resources in different hardware node at what time you prefer (can safely do it). Otherwise, if you will not do that, Microsoft will freeze you VM or other resource during update, without moving it to another node. In some exceptional cases you should contact technical support and discuss with them all the details.
-
+- What cons of serverless computing?
+  - Mostly it is dependency of vendor, because if you have solution and need to move to another vendor, you need to fully re-write all your solution for specifications of new Vendor. Example: Azure Functions -> AWS Lambda.
+  - 
 
 ------------
