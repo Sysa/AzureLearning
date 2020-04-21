@@ -41,7 +41,7 @@ Azure Service Bus
 	Batching - Client-side batching enables a queue or topic client to delay sending a message for a certain period of time. If the client sends additional messages during this time period, it transmits the messages in a single batch.
 	Transactions - groups two or more operations together into an execution scope. Service Bus supports grouping operations against a single messaging entity within the scope of a single transaction. A message entity can be a queue, topic, or subscription.
 	Filtering and actions - Subscribers can define which messages they want to receive from a topic. These messages are specified in the form of one or more named subscription rules. For each matching rule condition, the subscription produces a copy of the message, which can be differently annotated for each matching rule.
-	Autodelete - Autodelete on idle enables you to specify an idle interval after which a queue is automatically deleted.
+	Auto-delete - Auto-delete on idle enables you to specify an idle interval after which a queue is automatically deleted.
 	Duplicate detection - An error could cause the client to have a doubt about the outcome of a send operation. Duplicate detection enables the sender to resend the same message. Another option is for the queue or topic to discard any duplicate copies.
 	Security protocols - Service Bus supports security protocols such as Shared Access Signatures (SAS), Role Based Access Control (RBAC) and Managed identities for Azure resources.
 	Geo-DR - When Azure regions or datacenters experience downtime, Geo-disaster recovery enables data processing to continue operating in a different region or datacenter.
