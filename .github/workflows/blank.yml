@@ -27,11 +27,28 @@ jobs:
       run: echo Azure at home!
 
     # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    #- name: Run a multi-line script
+      #run: |
+        #echo Add other actions to build,
+        #echo test, and deploy your project.
         
     # Run spell check:
-    - name: Check spelling
-      uses: check-spelling/check-spelling@0.0.14-alpha
+    #- name: Check spelling
+      #uses: check-spelling/check-spelling@0.0.14-alpha
+    
+    #Run Mardown checker:
+    - name: Markdown Linting Action
+      uses: avto-dev/markdown-lint@v1.1.0
+      #with:
+        # Custom rule files (file|directory|glob|package)
+        #rules: # optional
+        # Configuration file (JSON, JSONC, or YAML)
+        #config: # optional
+        # Fix basic errors
+        #fix: # optional, default is false
+        # Write issues to file
+        #output: # optional
+        # Files to ignore/exclude
+        #ignore: # optional
+        # Files (directories|globs) for a work or any additional arguments
+        #args: 
