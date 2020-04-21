@@ -37,8 +37,8 @@ jobs:
       #uses: check-spelling/check-spelling@0.0.14-alpha
     
     #Run Mardown checker:
-    - name: Markdown Linting Action
-      uses: avto-dev/markdown-lint@v1.1.0
+    #- name: Markdown Linting Action
+      #uses: avto-dev/markdown-lint@v1.1.0
       #with:
         # Custom rule files (file|directory|glob|package)
         #rules: # optional
